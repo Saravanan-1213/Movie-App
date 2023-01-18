@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { color } from "@mui/system";
 
 const movieValidationSchema = yup.object({
   name: yup.string().required("Valid Name is need😑"),
@@ -28,39 +27,52 @@ const movieValidationSchema = yup.object({
     .url(),
 });
 
-export function AddMovie({ movieList, setMovieList }) {
-  // const [name, setName] = useState("");
-  // const [poster, setPoster] = useState("");
-  // const [rating, setRating] = useState("");
-  // const [summary, setSummary] = useState("");
-  // const [trailer, setTrailer] = useState("");
+// container presentational
+export function EditMovie({ movieList, setMovieList }) {
+  const { id } = useParams();
+  // const movie = MovieList[id];
 
+  const [movie, setMovie] = useState(null);
+
+  // After APP Compnent mounted
+  useEffect(() => {
+    fetch(`https://639236eeb750c8d178d9c9f3.mockapi.io/movies/${id}`, {
+      method: "GET",
+    })
+      .then((data) => data.json())
+      .then((mv) => setMovie(mv));
+  }, []);
+
+  console.log(movie);
+  return <div>{movie ? <EditMovieForm movie={movie} /> : "Loading..."}</div>;
+}
+function EditMovieForm({ movie }) {
   // formick used in add movie
   const formik = useFormik({
     initialValues: {
-      name: "",
-      poster: "",
-      rating: "",
-      summary: "",
-      trailer: "",
+      name: movie.name,
+      poster: movie.poster,
+      rating: movie.rating,
+      summary: movie.summary,
+      trailer: movie.trailer,
     },
     validationSchema: movieValidationSchema,
-    onSubmit: (newMoive) => {
-      console.log("Form values:", newMoive);
-      addMovie(newMoive);
+    onSubmit: (updatedMovie) => {
+      console.log("Form values:", updatedMovie);
+      editMovie(updatedMovie);
     },
   });
 
   const navigate = useNavigate();
 
-  const addMovie = (newMoive) => {
+  const editMovie = (updatedMovie) => {
     // strps for put method
-    // 1 metgod POST
+    // 1 metgod PUT(200) & id
     // 2 body -> data (data format should be Json)
     // 3 should mention in header in Json
-    fetch("https://639236eeb750c8d178d9c9f3.mockapi.io/movies", {
-      method: "POST",
-      body: JSON.stringify(newMoive),
+    fetch(`https://639236eeb750c8d178d9c9f3.mockapi.io/movies/${movie.id}`, {
+      method: "PUT",
+      body: JSON.stringify(updatedMovie),
       headers: { "Content-type": "application/json" },
     }).then(() => navigate("/movies"));
   };
@@ -142,8 +154,8 @@ export function AddMovie({ movieList, setMovieList }) {
 
       {/* Copy a Existing MovieList and add a new Movie on it */}
 
-      <Button type="submit" variant="contained">
-        Add Movie
+      <Button color="success" type="submit" variant="contained">
+        Save Movie
       </Button>
     </form>
   );

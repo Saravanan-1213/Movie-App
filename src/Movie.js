@@ -11,7 +11,7 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 
-export function Movie({ movie, id, deleteButton }) {
+export function Movie({ movie, id, deleteButton, editButton }) {
   //conditional styling
   const styles = {
     color: movie.rating >= 8.5 ? "green" : "red",
@@ -56,7 +56,7 @@ export function Movie({ movie, id, deleteButton }) {
       </CardContent>
       <CardActions>
         {/* render props pattern */}
-        <Counter /> {deleteButton}
+        <Counter /> {editButton} {deleteButton}
       </CardActions>
     </Card>
   );

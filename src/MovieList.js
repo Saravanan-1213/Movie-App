@@ -4,7 +4,8 @@ import { AddMovie } from "./AddMovie";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import DeleteIcon from "@mui/icons-material/Delete";
-
+import EditIcon from "@mui/icons-material/Edit";
+import { useNavigate } from "react-router-dom";
 export function MovieList() {
   const [movieList, setMovieList] = useState([]);
 
@@ -25,6 +26,8 @@ export function MovieList() {
       method: "DELETE",
     }).then((data) => getMovies());
   };
+
+  const navigate = useNavigate();
   return (
     <div>
       <div className="movie-list">
@@ -37,12 +40,22 @@ export function MovieList() {
                 id={mv.id}
                 deleteButton={
                   <IconButton
-                    style={{ marginLeft: "auto" }}
+                    sx={{ marginLeft: "auto" }}
                     onClick={() => deleteMovie(mv.id)}
                     aria-label="delete"
                     color="error"
                   >
                     <DeleteIcon />
+                  </IconButton>
+                }
+                editButton={
+                  <IconButton
+                    sx={{ marginLeft: "auto" }}
+                    onClick={() => navigate(`/movies/edit/${mv.id}`)}
+                    aria-label="edit"
+                    color="secondary"
+                  >
+                    <EditIcon />
                   </IconButton>
                 }
               />

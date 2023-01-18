@@ -16,6 +16,7 @@ import { MovieDetail } from "./MovieDetail";
 import { NotFound } from "./NotFound";
 import { Home } from "./Home";
 import { BasicForm } from "./BasicForm";
+import { EditMovie } from "./EditMovie";
 
 function App() {
   const [movieList, setMovieList] = useState([]);
@@ -85,6 +86,7 @@ function App() {
             />
             {/* : -> it denotes variable( matches any index numbers of movie i.e 1-id (:id) */}
             <Route path="/movies/:id" element={<MovieDetail />} />
+            <Route path="/movies/edit/:id" element={<EditMovie />} />
             <Route path="/basic-form" element={<BasicForm />} />
             <Route path="*" element={<NotFound />} />
 
