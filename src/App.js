@@ -46,7 +46,7 @@ function App() {
                 Movies
               </Button>
 
-              <Button color="inherit" onClick={() => navigate("/movies/add")}>
+              <Button color="inherit" onClick={() => navigate("/movies-add")}>
                 Add Movie
               </Button>
 
