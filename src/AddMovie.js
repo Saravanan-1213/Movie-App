@@ -53,14 +53,14 @@ export function AddMovie({ movieList, setMovieList }) {
 
   const navigate = useNavigate();
 
-  const addMovie = (newMoive) => {
+  const addMovie = (newMovie) => {
     // strps for put method
     // 1 metgod POST
     // 2 body -> data (data format should be Json)
     // 3 should mention in header in Json
     fetch(`${API}/movies`, {
       method: "POST",
-      body: JSON.stringify(newMoive),
+      body: JSON.stringify(newMovie),
       headers: { "Content-type": "application/json" },
     }).then(() => navigate("/movies"));
   };
