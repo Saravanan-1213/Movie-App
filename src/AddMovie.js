@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { color } from "@mui/system";
+import { API } from "./global";
 
 const movieValidationSchema = yup.object({
   name: yup.string().required("Valid Name is need😑"),
@@ -58,7 +59,7 @@ export function AddMovie({ movieList, setMovieList }) {
     // 1 metgod POST
     // 2 body -> data (data format should be Json)
     // 3 should mention in header in Json
-    fetch("https://639236eeb750c8d178d9c9f3.mockapi.io/movies", {
+    fetch(`${API}/movies`, {
       method: "POST",
       body: JSON.stringify(newMoive),
       headers: { "Content-type": "application/json" },

@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { API } from "./global";
 
 const movieValidationSchema = yup.object({
   name: yup.string().required("Valid Name is need😑"),
@@ -36,7 +37,7 @@ export function EditMovie({ movieList, setMovieList }) {
 
   // After APP Compnent mounted
   useEffect(() => {
-    fetch(`https://639236eeb750c8d178d9c9f3.mockapi.io/movies/${id}`, {
+    fetch(`${API}/movies/${id}`, {
       method: "GET",
     })
       .then((data) => data.json())
@@ -70,7 +71,7 @@ function EditMovieForm({ movie }) {
     // 1 metgod PUT(200) & id
     // 2 body -> data (data format should be Json)
     // 3 should mention in header in Json
-    fetch(`https://639236eeb750c8d178d9c9f3.mockapi.io/movies/${movie.id}`, {
+    fetch(`${API}/movies/${movie.id}`, {
       method: "PUT",
       body: JSON.stringify(updatedMovie),
       headers: { "Content-type": "application/json" },
