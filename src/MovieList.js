@@ -35,14 +35,14 @@ export function MovieList() {
         {/* Parent(Movie) -> Child(movie) = {props}(mvl) */}
         {movieList.map((mv) => {
           return (
-            <div key={mv.id}>
+            <div key={mv._id}>
               <Movie
                 movie={mv}
-                id={mv.id}
+                id={mv._id}
                 deleteButton={
                   <IconButton
                     sx={{ marginLeft: "auto" }}
-                    onClick={() => deleteMovie(mv.id)}
+                    onClick={() => deleteMovie(mv._id)}
                     aria-label="delete"
                     color="error"
                   >
@@ -52,7 +52,7 @@ export function MovieList() {
                 editButton={
                   <IconButton
                     sx={{ marginLeft: "auto" }}
-                    onClick={() => navigate(`/movies/edit/${mv.id}`)}
+                    onClick={() => navigate(`/movies/edit/${mv._id}`)}
                     aria-label="edit"
                     color="secondary"
                   >
