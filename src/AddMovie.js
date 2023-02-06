@@ -1,10 +1,9 @@
-import { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { color } from "@mui/system";
+
 import { API } from "./global";
 
 const movieValidationSchema = yup.object({

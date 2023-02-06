@@ -2,7 +2,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { useEffect, useState } from "react";
-import { MovieList } from "./MovieList";
 import { API } from "./global";
 
 export function MovieDetail() {

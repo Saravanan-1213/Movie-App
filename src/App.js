@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { Routes, Route, Link, Navigate, useNavigate } from "react-router-dom";
 import { AddColor } from "./AddColor";
