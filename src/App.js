@@ -78,7 +78,7 @@ function App() {
             <Route path="/color-game" element={<AddColor />} />
 
             <Route
-              path="/movies/add"
+              path="/movies-add"
               element={
                 <AddMovie movieList={movieList} setMovieList={setMovieList} />
               }
